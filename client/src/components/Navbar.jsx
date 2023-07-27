@@ -3,6 +3,7 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
@@ -69,8 +70,15 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const history = useHistory();
   const { currentUser } = useSelector((state) => state.user);
   const quantity = useSelector((state) => state.cart.quantity);
+
+  const logout = () => {
+    history.push("/");
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <Container>
@@ -98,7 +106,7 @@ const Navbar = () => {
           )}
           {currentUser && (
             <>
-              <MenuItem>LOGOUT</MenuItem>
+              <MenuItem onClick={logout}>LOGOUT</MenuItem>
             </>
           )}
 

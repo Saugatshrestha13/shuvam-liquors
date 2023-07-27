@@ -10,7 +10,7 @@ import Navbar from "../components/Navbar";
 import { userRequest } from "../requestMethods";
 import { mobile } from "../responsive";
 
-const KEY = process.env.REACT_APP_STRIPE;
+const KEY = process.env.REACT_APP_STRIPE_KEY;
 
 const Container = styled.div``;
 
