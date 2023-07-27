@@ -1,14 +1,14 @@
-import { useState } from "react";
-import "./newProduct.css";
 import {
+  getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-  getDownloadURL,
 } from "firebase/storage";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls";
-import { useDispatch } from "react-redux";
+import "./newProduct.css";
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
@@ -109,7 +109,7 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleCat} />
+          <input type="text" placeholder="whiskey,beer" onChange={handleCat} />
         </div>
         <div className="addProductItem">
           <label>Stock</label>

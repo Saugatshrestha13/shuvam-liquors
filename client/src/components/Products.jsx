@@ -1,8 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
-import axios from "axios";
 
 const Container = styled.div`
   padding: 20px;
@@ -24,7 +23,7 @@ const Products = ({ cat, filters, sort }) => {
             : "http://localhost:5000/api/products"
         );
         setProducts(res.data);
-      } catch (err) {}
+      } catch (err) { }
     };
     getProducts();
   }, [cat]);
@@ -61,8 +60,8 @@ const Products = ({ cat, filters, sort }) => {
       {cat
         ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
         : products
-            .slice(0, 8)
-            .map((item) => <Product item={item} key={item.id} />)}
+          .slice(0, 8)
+          .map((item) => <Product item={item} key={item.id} />)}
     </Container>
   );
 };

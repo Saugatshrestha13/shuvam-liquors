@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
-import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
-import { mobile } from "../responsive";
-import { useLocation } from "react-router";
 import { useState } from "react";
+import { useLocation } from "react-router";
+import styled from "styled-components";
+import Announcement from "../components/Announcement";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Newsletter from "../components/Newsletter";
+import Products from "../components/Products";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
@@ -60,22 +60,22 @@ const ProductList = () => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select name="color" onChange={handleFilters}>
+          <Select name="type" onChange={handleFilters}>
             <Option disabled>Color</Option>
-            <Option>white</Option>
-            <Option>black</Option>
-            <Option>red</Option>
-            <Option>blue</Option>
-            <Option>yellow</Option>
-            <Option>green</Option>
+            <Option>whiskey</Option>
+            <Option>beer</Option>
+            <Option>wine</Option>
+            <Option>Tequila</Option>
+            <Option>ColdDrinks</Option>
+
           </Select>
           <Select name="size" onChange={handleFilters}>
             <Option disabled>Size</Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
+            <Option>Quarter</Option>
+            <Option>Half</Option>
+            <Option>Full</Option>
+            <Option>1Ltr</Option>
+            <Option>4Ltrs</Option>
           </Select>
         </Filter>
         <Filter>
