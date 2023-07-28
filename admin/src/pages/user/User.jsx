@@ -1,22 +1,49 @@
 import {
-  CalendarToday,
   LocationSearching,
   MailOutline,
   PermIdentity,
-  PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getUserById, updateUser } from "../../redux/apiCalls";
 import "./user.css";
 
 export default function User() {
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const userId = location.pathname.split("/")[2];
+  const [inputs, setInputs] = useState({});
+  const user = useSelector((state) => state.user.userById);
+  const updatedUser = useSelector((state) => state.user);
+  console.log(updatedUser);
+  useEffect(() => {
+    if (userId) {
+      getUserById(userId, dispatch);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (user) {
+      setInputs({
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        name: user.name,
+      });
+    }
+  }, [user]);
+
+  const updateUserClick = (e) => {
+    e.preventDefault();
+    updateUser(userId, inputs, dispatch);
+  };
+
   return (
     <div className="user">
       <div className="userTitleContainer">
         <h1 className="userTitle">Edit User</h1>
-        <Link to="/newUser">
-          <button className="userAddButton">Create</button>
-        </Link>
       </div>
       <div className="userContainer">
         <div className="userShow">
@@ -27,32 +54,23 @@ export default function User() {
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              <span className="userShowUsername">{user.name}</span>
             </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
-            </div>
-            <div className="userShowInfo">
-              <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1999</span>
+              <span className="userShowInfoTitle">{user.username}</span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
-              <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">+1 123 456 67</span>
-            </div>
-            <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99@gmail.com</span>
+              <span className="userShowInfoTitle">{user.email}</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
-              <span className="userShowInfoTitle">New York | USA</span>
+              <span className="userShowInfoTitle">Nepal, KTM</span>
             </div>
           </div>
         </div>
@@ -64,7 +82,8 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  placeholder="annabeck99"
+                  defaultValue={user.username}
+                  placeholder="Username.."
                   className="userUpdateInput"
                 />
               </div>
@@ -72,7 +91,8 @@ export default function User() {
                 <label>Full Name</label>
                 <input
                   type="text"
-                  placeholder="Anna Becker"
+                  defaultValue={user.name}
+                  placeholder="Full Name"
                   className="userUpdateInput"
                 />
               </div>
@@ -80,23 +100,8 @@ export default function User() {
                 <label>Email</label>
                 <input
                   type="text"
-                  placeholder="annabeck99@gmail.com"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  placeholder="+1 123 456 67"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Address</label>
-                <input
-                  type="text"
-                  placeholder="New York | USA"
+                  defaultValue={user.email}
+                  placeholder="Email.."
                   className="userUpdateInput"
                 />
               </div>
@@ -113,7 +118,9 @@ export default function User() {
                 </label>
                 <input type="file" id="file" style={{ display: "none" }} />
               </div>
-              <button className="userUpdateButton">Update</button>
+              <button className="userUpdateButton" onClick={updateUserClick}>
+                Update
+              </button>
             </div>
           </form>
         </div>

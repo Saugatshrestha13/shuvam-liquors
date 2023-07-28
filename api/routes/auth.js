@@ -7,6 +7,7 @@ router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
+    name: req.body.name + " " + req.body.lastName,
     password: CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
@@ -24,7 +25,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    console.log(user);
     !user && res.status(401).json("Wrong credentials!");
 
     const hashedPassword = CryptoJS.AES.decrypt(

@@ -15,6 +15,7 @@ export default function ProductList() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
+    console.log(id);
     deleteProduct(id, dispatch);
   };
 
@@ -33,7 +34,18 @@ export default function ProductList() {
         );
       },
     },
-    { field: "inStock", headerName: "Stock", width: 200 },
+    {
+      field: "inStock",
+      headerName: "In Stock",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <button className="productListEdit">
+            {params.row.inStock ? "Yes" : "No"}
+          </button>
+        );
+      },
+    },
     {
       field: "price",
       headerName: "Price",
@@ -61,6 +73,12 @@ export default function ProductList() {
 
   return (
     <div className="productList">
+      <div className="userTitleContainer">
+        <h1 className="userTitle">Products</h1>
+        <Link to="/newproduct">
+          <button className="userAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid
         rows={products}
         disableSelectionOnClick

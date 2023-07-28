@@ -1,42 +1,47 @@
-import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { userRows } from "../../dummyData";
+import { getUsers } from "../../redux/apiCalls";
+import "./userList.css";
 
 export default function UserList() {
-  const [data, setData] = useState(userRows);
+  const users = useSelector((state) => state?.user?.allUsers);
+  const dispatch = useDispatch();
+  const [data, setData] = useState(users);
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
-  
+
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "name", headerName: "Name", width: 150 },
     {
-      field: "user",
+      field: "username",
       headerName: "User",
       width: 200,
       renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
+        return <div className="userListUser">{params.row.username}</div>;
       },
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
+      field: "isAdmin",
+      headerName: "User Type",
       width: 160,
+      renderCell: (params) => {
+        return (
+          <div className="userListUser">
+            {params.row.isAdmin ? "Admin" : "Client"}
+          </div>
+        );
+      },
     },
     {
       field: "action",
@@ -45,7 +50,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link to={"/user/" + params.row._id}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
@@ -60,10 +65,14 @@ export default function UserList() {
 
   return (
     <div className="userList">
+      <div className="userTitleContainer">
+        <h1 className="userTitle">Users</h1>
+      </div>
       <DataGrid
         rows={data}
         disableSelectionOnClick
         columns={columns}
+        getRowId={(row) => row._id}
         pageSize={8}
         checkboxSelection
       />

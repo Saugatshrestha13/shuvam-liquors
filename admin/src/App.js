@@ -27,9 +27,6 @@ function App() {
         <ProtectedRoute path="/user/:userId">
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/newUser">
-          <NewUser />
-        </ProtectedRoute>
         <ProtectedRoute path="/products">
           <ProductList />
         </ProtectedRoute>

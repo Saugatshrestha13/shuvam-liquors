@@ -58,7 +58,8 @@
 }
 
 .productInfoItem {
-  width: 150px;
+  max-width: 300px;
+  min-width: 150px;
   display: flex;
   justify-content: space-between;
 }

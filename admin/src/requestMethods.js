@@ -6,7 +6,7 @@ const user = JSON.parse(localStorage.getItem("persist:root"))
       .currentUser
   : null;
 const TOKEN = user?.accessToken || null;
-
+console.log(TOKEN);
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
