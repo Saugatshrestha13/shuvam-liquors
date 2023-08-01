@@ -29,15 +29,18 @@ const Products = ({ cat, filters, sort }) => {
   }, [cat]);
 
   useEffect(() => {
-    cat &&
-      setFilteredProducts(
-        products.filter((item) =>
-          Object.entries(filters).every(([key, value]) =>
-            item[key].includes(value)
-          )
-        )
-      );
-  }, [products, cat, filters]);
+    if (products.length) {
+      if (filters?.size && filters?.size !== 'All') {
+        console.log(filters)
+        setFilteredProducts(products.filter((item) => {
+          const nSize = item.size?.find(si => si === filters?.size)
+          if (nSize) return item
+        }))
+      } else {
+        setFilteredProducts([...products])
+      }
+    }
+  }, [filters, products])
 
   useEffect(() => {
     if (sort === "newest") {
@@ -57,11 +60,7 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <Container>
-      {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
-        : products
-          .slice(0, 8)
-          .map((item) => <Product item={item} key={item.id} />)}
+      {filteredProducts.length > 0 ? filteredProducts.map((item) => <Product item={item} key={item.id} />) : <div style={{ width: "100%", height: "50px", textAlign: 'center' }}>No Products Available</div>}
     </Container>
   );
 };

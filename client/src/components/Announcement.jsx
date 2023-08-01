@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -12,7 +13,8 @@ const Container = styled.div`
 `;
 
 const Announcement = () => {
-  return <Container>Super Deal! Get your products on wholesale rate!</Container>;
+  const history = useHistory()
+  return <Container onClick={() => history.push('/estimation')}>This website also provides estimation party plan facility.</Container>
 };
 
 export default Announcement;

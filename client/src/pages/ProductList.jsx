@@ -59,23 +59,24 @@ const ProductList = () => {
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
-          <FilterText>Filter Products:</FilterText>
+          {/* <FilterText>Filter Products:</FilterText>
           <Select name="type" onChange={handleFilters}>
             <Option disabled>Color</Option>
-            <Option>whiskey</Option>
-            <Option>beer</Option>
-            <Option>wine</Option>
+            <Option>Whiskey</Option>
+            <Option>Beer</Option>
+            <Option>Wine</Option>
             <Option>Tequila</Option>
-            <Option>ColdDrinks</Option>
+            <Option>Cold Drinks</Option>
 
-          </Select>
+          </Select> */}
           <Select name="size" onChange={handleFilters}>
             <Option disabled>Size</Option>
-            <Option>Quarter</Option>
-            <Option>Half</Option>
-            <Option>Full</Option>
+            <Option>All</Option>
+            <Option>180ml</Option>
+            <Option>375ml</Option>
+            <Option>750ml</Option>
             <Option>1Ltr</Option>
-            <Option>4Ltrs</Option>
+            <Option>Box</Option>
           </Select>
         </Filter>
         <Filter>

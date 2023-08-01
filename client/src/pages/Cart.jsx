@@ -188,7 +188,7 @@ const Cart = () => {
       <Navbar />
       <Announcement />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>YOUR Cart</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
@@ -237,12 +237,12 @@ const Cart = () => {
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Delivery Cost</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemText>Delivery Charge</SummaryItemText>
+              <SummaryItemPrice>Rs 100</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Discount on delivery</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemPrice>$ -100</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>

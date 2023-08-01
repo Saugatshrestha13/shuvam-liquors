@@ -112,26 +112,26 @@ const Footer = () => {
         <List>
           <ListItem>Home</ListItem>
           <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
+          <ListItem>Whiskey</ListItem>
+          <ListItem>Beer</ListItem>
+          <ListItem>Wine</ListItem>
           <ListItem>My Account</ListItem>
+          <ListItem>Snacks</ListItem>
           <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
+          <ListItem>WishList</ListItem>
           <ListItem>Terms</ListItem>
         </List>
       </Center>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South Tobinchester 98336
+          <Room style={{ marginRight: "10px" }} /> Nayabazar, Dhara Galli, Khusibun
         </ContactItem>
         <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+          <Phone style={{ marginRight: "10px" }} /> +977 9876543210
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
+          <MailOutline style={{ marginRight: "10px" }} /> email@shuvamsuperstore.com
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>

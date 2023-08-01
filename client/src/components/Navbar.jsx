@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
+import logo from "../assets/logo.png";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -13,11 +14,13 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
+   height: 100%;
+  padding: 0 20px;
   display: flex;
+  flex-font: row nowrap;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
+  background: papayawhip;
 `;
 
 const Left = styled.div`
@@ -69,6 +72,7 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+
 const Navbar = () => {
   const history = useHistory();
   const { currentUser } = useSelector((state) => state.user);
@@ -91,7 +95,9 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Shuvam Liquors.</Logo>
+          <Logo onClick={() => history.push('/')}>
+            <img src={logo} height={"50px"} />
+          </Logo>
         </Center>
         <Right>
           {!currentUser && (
@@ -123,4 +129,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar
