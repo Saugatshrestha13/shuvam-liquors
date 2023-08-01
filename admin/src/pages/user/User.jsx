@@ -54,19 +54,19 @@ export default function User() {
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">{user.name}</span>
+              <span className="userShowUsername">{user?.name}</span>
             </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">{user.username}</span>
+              <span className="userShowInfoTitle">{user?.username}</span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">{user.email}</span>
+              <span className="userShowInfoTitle">{user?.email}</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
@@ -82,7 +82,7 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  defaultValue={user.username}
+                  defaultValue={user?.username}
                   placeholder="Username.."
                   className="userUpdateInput"
                 />
@@ -91,7 +91,7 @@ export default function User() {
                 <label>Full Name</label>
                 <input
                   type="text"
-                  defaultValue={user.name}
+                  defaultValue={user?.name}
                   placeholder="Full Name"
                   className="userUpdateInput"
                 />
@@ -100,7 +100,7 @@ export default function User() {
                 <label>Email</label>
                 <input
                   type="text"
-                  defaultValue={user.email}
+                  defaultValue={user?.email}
                   placeholder="Email.."
                   className="userUpdateInput"
                 />
